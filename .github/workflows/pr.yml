@@ -10,12 +10,24 @@ jobs:
   create-pr-alert:
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Debugging step to see which branch triggered the action
+      - name: Print Branch Information
+        run: |
+          echo "GitHub Ref: ${{ github.ref }}"
+          echo "GitHub Ref Name: ${{ github.ref_name }}"
+          echo "GitHub Base Ref: ${{ github.base_ref }}"
+      
+      # Use the PR action with the dynamic branch information
       - name: Use Create Pull Request Alert Action
         uses: surangajayalath/pull-request-slack-notifier-modified@v1
         with:
           repository: "surangajayalath/pull-request-slack-notifier-modified"
-          base-branch: "main"
-          head-branch: ${{ github.ref_name }}  # Use the branch name that triggered the push
+          base-branch: "main"  # Main branch to which we want to merge changes
+          head-branch: ${{ github.ref_name }}  # Branch that triggered the push event
           pr-title: "Automated Pull Request from ${{ github.ref_name }}"
           pr-body: "This is an automated pull request for merging changes from ${{ github.ref_name }}."
         env:
