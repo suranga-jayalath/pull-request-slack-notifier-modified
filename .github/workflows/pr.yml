@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: pull-request-action
         #uses: vsoch/pull-request-action@master
-        uses: surangajayalath/pull-request-slack-notifier-modified@v3
+        uses: surangajayalath/pull-request-slack-notifier-modified@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           #BRANCH_PREFIX: "update/"
