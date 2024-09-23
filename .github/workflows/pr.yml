@@ -3,7 +3,7 @@ name: "Auto PR Alerts"
 on:
   push:
     branches:
-      - main
+      - development
 
 jobs:
   create-pr-alert:
