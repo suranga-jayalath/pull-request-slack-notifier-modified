@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup AWS CLI
-        uses: suranga-jayalath/setup-aws-cli@v1.0.0
+        uses: suranga-jayalath/pull-request-slack-notifier-modified@v1.0.0
         with:
           region: 'eu-west-1'
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
