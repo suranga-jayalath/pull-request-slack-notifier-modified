@@ -15,8 +15,8 @@ jobs:
         with:
           repository: "surangajayalath/pull-request-slack-notifier-modified"
           base-branch: "main"
-          head-branch: "feature-branch"
-          pr-title: "Automated Pull Request"
-          pr-body: "This is an automated pull request for merging feature changes."
+          head-branch: ${{ github.ref_name }}  # Use the branch name that triggered the push
+          pr-title: "Automated Pull Request from ${{ github.ref_name }}"
+          pr-body: "This is an automated pull request for merging changes from ${{ github.ref_name }}."
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
