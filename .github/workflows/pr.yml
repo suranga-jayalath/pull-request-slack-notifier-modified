@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: pull-request-action
-        uses: vsoch/pull-request-action@master
+        #uses: vsoch/pull-request-action@master
+        uses: surangajayalath/pull-request-slack-notifier-modified@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
           #BRANCH_PREFIX: "update/"
