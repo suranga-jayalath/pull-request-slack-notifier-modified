@@ -19,7 +19,7 @@ jobs:
       - name: Setup AWS CLI
         uses: suranga-jayalath/pull-request-slack-notifier-modified@v1.0.0
         with:
-          region: 'eu-west-1'
+          region: 'us-east-1'
           access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           secret-access-key: ${{ secrets. AWS_SECRET_ACCESS_KEY }}
           aws-cli-version: 1.32.33
