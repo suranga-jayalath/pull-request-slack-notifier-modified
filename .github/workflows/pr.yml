@@ -19,4 +19,4 @@ jobs:
       - name: Setup AWS CLI
         uses: surangajayalath/pull-request-slack-notifier-modified@v1.0.3
         with:
-          secret: ${{ secrets. GIT_TOKEN }}
+          secret: ${{ secrets.GIT_TOKEN }}
