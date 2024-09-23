@@ -7,19 +7,14 @@ on:
       - main
 
 jobs:
-  example:
+  auto-pull-request:
+    name: PullRequestAction
     runs-on: ubuntu-latest
     steps:
-      - name: Open PR
-        id: open_pr
-        uses: rematocorp/open-pull-request-action@v1
-        with:
-          github-token: ${{ secrets.GIT_TOKEN }}
-          from-branch: change_this
-          to-branch: change_this
-          repository-owner: change_this
-          repository: change_this
-          
-      - name: Echo mergeable PR number
-        run: echo ${{ steps.open_pr.outputs.pull_number }}
+      - name: pull-request-action
+        uses: vsoch/pull-request-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          BRANCH_PREFIX: "update/"
+          PULL_REQUEST_BRANCH: "main"
     
