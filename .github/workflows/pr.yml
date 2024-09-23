@@ -1,22 +1,20 @@
-name: 18. Use Published AWS CLI Action
-run-name: ${{ github.actor }} is running the ${{ github.workflow }}
-# on:
-#   - workflow_dispatch
+name: "Auto PR Alerts"
 
 on:
   push:
     branches:
       - main
-      - master
+
 jobs:
-  setup-aws-cli:
+  create-pr-alert:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup AWS CLI
-        uses: surangajayalath/pull-request-slack-notifier-modified@v1.0.2
+      - name: Use Create Pull Request Alert Action
+        uses: surangajayalath/pull-request-slack-notifier-modified@v1.0.3
         with:
-          secret: ${{ secrets.GIT_TOKEN }}
+          repository: "surangajayalath/pull-request-slack-notifier-modified"
+          base-branch: "main"
+          head-branch: "feature-branch"
+          pr-title: "Automated Pull Request"
+          pr-body: "This is an automated pull request for merging feature changes."
+          github-token: ${{ secrets.GIT_TOKEN }}
