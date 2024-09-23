@@ -1,8 +1,13 @@
 name: 18. Use Published AWS CLI Action
 run-name: ${{ github.actor }} is running the ${{ github.workflow }}
-on:
-  - workflow_dispatch
+# on:
+#   - workflow_dispatch
 
+on:
+  push:
+    branches:
+      - main
+      - master
 jobs:
   setup-aws-cli:
     runs-on: ubuntu-latest
