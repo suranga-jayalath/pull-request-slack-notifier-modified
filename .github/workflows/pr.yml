@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Use Create Pull Request Alert Action
-        uses: surangajayalath/pull-request-slack-notifier-modified@v1.0.5
+        uses: surangajayalath/pull-request-slack-notifier-modified@v1.0.6
         with:
           repository: "surangajayalath/pull-request-slack-notifier-modified"
           base-branch: "main"
