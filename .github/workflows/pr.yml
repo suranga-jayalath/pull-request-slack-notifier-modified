@@ -12,10 +12,42 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: pull-request-action
-        #uses: vsoch/pull-request-action@master
-        uses: surangajayalath/pull-request-slack-notifier-modified@v5
+        uses: surangajayalath/pull-request-slack-notifier-modified@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-          #BRANCH_PREFIX: "update/"
           PULL_REQUEST_BRANCH: "main"
+      
+      - name: Send PR URL to Slack
+        if: steps.pull-request-action.outputs.pull_request_url != ''
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data \
+          '{"text":"A new PR has been created: ${{ steps.pull-request-action.outputs.pull_request_url }}"}' \
+          $SLACK_WEBHOOK_URL
+
+
+
+
+
+# name: "Auto PR Alerts"
+
+# on:
+#   push:
+#     branches:
+#       - development
+#       - main
+
+# jobs:
+#   auto-pull-request:
+#     name: PullRequestAction
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: pull-request-action
+#         #uses: vsoch/pull-request-action@master
+#         uses: surangajayalath/pull-request-slack-notifier-modified@v5
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+#           #BRANCH_PREFIX: "update/"
+#           PULL_REQUEST_BRANCH: "main"
     
