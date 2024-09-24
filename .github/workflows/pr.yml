@@ -1,22 +1,25 @@
-name: "Auto PR Alerts"
+name: Auto PR Alerts
 
 on:
   push:
     branches:
-      - development
       - main
+      - development
 
 jobs:
-  auto-pull-request:
-    name: PullRequestAction
+  create_pr:
     runs-on: ubuntu-latest
     steps:
-      - name: pull-request-action
+      - name: Create Pull Request
         uses: surangajayalath/pull-request-slack-notifier-modified@v2
+        with:
+          PULL_REQUEST_TITLE: 'Automated Pull Request'
+          PULL_REQUEST_BODY: 'Please review the changes.'
+          PULL_REQUEST_HEAD: 'feature-branch'  # Change to your feature branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-          PULL_REQUEST_BRANCH: "main"
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}  # Add your Slack webhook URL as a secret
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
 
 
 
