@@ -9,7 +9,7 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
-      - uses: surangajayalath/pull-request-slack-notifier-modified@v5
+      - uses: surangajayalath/pull-request-slack-notifier-modified@v1.0.0
         with:
           slack-bot-token: ${{ secrets.slack_bot_token }}
           slack-channel-id: ${{ secrets.channel_id }}
