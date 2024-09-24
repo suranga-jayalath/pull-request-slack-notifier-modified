@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create Pull Request
-        uses: surangajayalath/pull-request-slack-notifier-modified@v2
+        uses: surangajayalath/pull-request-slack-notifier-modified@v3
         with:
           PULL_REQUEST_TITLE: 'Automated Pull Request'
           PULL_REQUEST_BODY: 'Please review the changes.'
