@@ -1,20 +1,47 @@
-name: "Auto PR Alerts"
+name: PR Alert - Slack
 
 on:
-  push:
-    branches:
-      - development
-      - main
+  pull_request:
+    types:
+      - opened
 
 jobs:
-  auto-pull-request:
-    name: PullRequestAction
+  notify:
     runs-on: ubuntu-latest
     steps:
-      - name: pull-request-action
-        uses: vsoch/pull-request-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-          BRANCH_PREFIX: "update/"
-          PULL_REQUEST_BRANCH: "main"
+      - uses: surangajayalath/pull-request-slack-notifier-modified@v5
+        with:
+          slack-bot-token: ${{ secrets.slack_bot_token }}
+          slack-channel-id: ${{ secrets.channel_id }}
+          user-mapping: |
+            {
+              "maduraPradeep": "U02UK6PKZ",
+              "supuni9622": "U01AV9L5H25",
+              "suranga-jayalath": "U04K26AAD7A"
+            }
+
+
+
+
+
+# name: "Auto PR Alerts"
+
+# on:
+#   push:
+#     branches:
+#       - development
+#       - main
+
+# jobs:
+#   auto-pull-request:
+#     name: PullRequestAction
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: pull-request-action
+#         #uses: vsoch/pull-request-action@master
+#         uses: surangajayalath/pull-request-slack-notifier-modified@v5
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+#           #BRANCH_PREFIX: "update/"
+#           PULL_REQUEST_BRANCH: "main"
     
