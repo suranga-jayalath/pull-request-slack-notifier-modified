@@ -1,24 +1,24 @@
-name: Auto PR Alerts
+name: PR Alert - Slack
 
 on:
-  push:
-    branches:
-      - main
-      - development
+  pull_request:
+    types:
+      - opened
 
 jobs:
-  create_pr:
+  notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Create Pull Request
-        uses: surangajayalath/pull-request-slack-notifier-modified@v3
+      - uses: surangajayalath/pull-request-slack-notifier-modified@v5
         with:
-          PULL_REQUEST_TITLE: 'Automated Pull Request'
-          PULL_REQUEST_BODY: 'Please review the changes.'
-          PULL_REQUEST_HEAD: 'feature-branch'  # Make sure this branch exists
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          slack-bot-token: ${{ secrets.slack_bot_token }}
+          slack-channel-id: ${{ secrets.channel_id }}
+          user-mapping: |
+            {
+              "maduraPradeep": "U02UK6PKZ",
+              "supuni9622": "U01AV9L5H25",
+              "suranga-jayalath": "U04K26AAD7A"
+            }
 
 
 
